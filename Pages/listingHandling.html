@@ -3,12 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Kirpputori</title>
 </head>
-<body>
-    <script src="./bootstrap/bootstrap.min.js"></script>
-    <script src="./javascript/script.js"></script>
+<body class="d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-lg bg-success">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../index.html">Kirpputori</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="listingHandling.html">Manage-items</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="browse.html">Browse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login-register.html">My-account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                    <button class="btn btn-outline-dark btn-warning" type="submit">Search</button>
+                </form>
+                 <!-- Shopping Cart Icon with Badge -->
+                <div class="d-flex align-items-center">
+                    <a href="shopping-cart.html" class="text-decoration-none position-relative mx-3">
+                        <i class="fas fa-shopping-cart fa-lg text-white"></i>
+                        <!-- Badge showing item count -->
+                        <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-dark">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>   
+    </nav>
+    <main class="flex-grow-1">
+
+    </main>
+    <footer class="bg-dark text-white pt-3 pb-3">
+        <div class="container">
+            <div class="row">
+            <!-- Social Media Icons -->
+                <div class="col-md-6 mx-auto  text-center">
+                    <h5 class="mb-3 d-flex justify-content-center">Follow Us</h5>
+                    <div class="d-flex gap-3 justify-content-center">
+                        <a href="#" class="text-white fs-4 text-hover-warning">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-white fs-4">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-white fs-4">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-white fs-4">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-white fs-4">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="../bootstrap/bootstrap.min.js"></script>
+    <script src="../javascript/script.js"></script>
 </body>
 </html>
