@@ -1,3 +1,8 @@
+body {
+    background-color: rgb(229, 214, 214)
+}
+
+
 /* footer link hover effect */
 footer a:hover {
     color: #00fa26 !important; /* Light blue */
@@ -62,4 +67,14 @@ footer a:hover {
         width: auto; /* Remove fixed width on larger screens */
         min-width: 160px; /* Minimum width for buttons */
     }
+}
+
+
+/* contact section of the home page
+map styling */
+#embedmap-canvas img {
+    max-width: none !important;
+    background: none !important;
+    font-size: inherit;
+    font-weight: inherit;
 }
