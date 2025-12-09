@@ -3,19 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer">
     <link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <title>kirpputori-project</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <nav class="navbar navbar-expand-lg bg-success">
+    <!-- making navbar the navabr -->
+    <nav class="navbar navbar-expand-lg bg-warning">
         <div class="container-fluid">
+            <!-- navbar brand -->
             <a class="navbar-brand" href="index.html">Kirpputori</a>
+            <!-- making the navbar responsive to screan size, when screan gets smaller then navbar will collapse -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <!-- targeting the  links on the navbar when it collapse-->
             <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- navbar links are starting from here-->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.html">Home</a>
@@ -23,8 +31,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="pages/listingHandling.html">Manage-items</a>
                     </li>
+                    <li class="nav-itme">
+                        <a class="nav-link" href="pages/sell-item.html">Sell-items</a>
+                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/browse.html">Browse</a>
+                        <a class="nav-link" href="pages/browse.html">Browse-items</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="pages/login-register.html">My-account</a>
@@ -33,9 +44,10 @@
                         <a class="nav-link" href="pages/about.html">About</a>
                     </li>
                 </ul>
+                <!-- search box for user to ba able to do a quick search and a search button-->
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                    <button class="btn btn-outline-dark btn-warning" type="submit">Search</button>
+                    <input class="form-control me-2" id="navSearchInput" type="search" placeholder="Search" aria-label="Search"/>
+                    <button class="btn btn-outline-dark btn-info" type="submit">Search</button>
                 </form>
                 <!-- Shopping Cart Icon with Badge -->
                 <div class="d-flex align-items-center">
@@ -49,28 +61,67 @@
         </div>   
     </nav>
     <main class="flex-grow-1">
+    <!-- main banner the hero section with its backgroung image -->
+        <section class="bgimage" id="home">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hero-text">
+                        <h2 class="hero_title">Wellcome</h2>
+                        <p class="hero_desc">Enjoy Shopping</p>
+                        <div class="hero-buttons">
+    <!-- these buttons directs the user to the erquired page-->
+                            <a href="pages/browse.html" class="btn btn-warning hero-buttons fw-bold">Browse-item</a>
+                            <a href="pages/sell-item.html" class="btn btn-warning hero-buttons fw-bold">Sell-items</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <!-- About Section -->
+        <section id="about" class="py-5 bg-light">
+            <div class="container">
+                <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h2 class="mb-3">About Kirpputori</h2>
+                    <p>
+                    Welcome to our Kirpputori! We are your friendly online marketplace for buying and selling second-hand items.
+                    From clothes and accessories to furniture and electronics, our platform makes it easy to find great deals and give items a second life. 
+                    </p>
+                    <p>
+                    Our mission is to promote sustainability, reduce waste, and create a community where everyone can find something unique.
+                    Join us today and discover how simple and fun thrifting can be!
+                    </p>
+                    <a href="pages/about.html" class="btn btn-primary my-3">Learn More</a>
+                </div>
+                <div class="col-md-6">
+                    <img src="./images/about-section.png" alt="About Kirpputori" class="img-fluid rounded">
+                </div>
+                </div>
+            </div>
+        </section>
+
 
     </main>
-    <footer class="bg-dark text-white pt-3 pb-3">
+    <footer class="bg-warning text-white pt-3 pb-3">
         <div class="container">
             <div class="row">
             <!-- Social Media Icons -->
                 <div class="col-md-6 mx-auto  text-center">
                     <h5 class="mb-3 d-flex justify-content-center">Follow Us</h5>
                     <div class="d-flex gap-3 justify-content-center">
-                        <a href="#" class="text-white fs-4 text-hover-warning">
+                        <a href="https://www.facebook.com/" class="text-white fs-4 text-hover-warning">
                             <i class="fab fa-facebook"></i>
                         </a>
-                        <a href="#" class="text-white fs-4">
-                            <i class="fab fa-twitter"></i>
+                        <a href="https://www.x.com/" class="text-white fs-4">
+                            <i class="fa-brands fa-x-twitter"></i>
                         </a>
-                        <a href="#" class="text-white fs-4">
+                        <a href="https://www.instagram.com/" class="text-white fs-4">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="text-white fs-4">
+                        <a href="https://www.linkedin.com/" class="text-white fs-4">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        <a href="#" class="text-white fs-4">
+                        <a href="https://www.youtube.com/" class="text-white fs-4">
                             <i class="fab fa-youtube"></i>
                         </a>
                     </div>
