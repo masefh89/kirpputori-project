@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(229, 214, 214)
+    background-color: rgb(152, 139, 139)
 }
 
 
@@ -77,4 +77,11 @@ map styling */
     background: none !important;
     font-size: inherit;
     font-weight: inherit;
+}
+
+
+/* home page, selling section cards styling */
+.card-img-top {
+    height: 400px; 
+    object-fit: cover;
 }
