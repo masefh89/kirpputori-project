@@ -34,7 +34,7 @@
                         <a class="nav-link" href="browse.html">Browse-items</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login-register.html">My-account</a>
+                        <a class="nav-link" href="login.html">My-account</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="about.html">About</a>
@@ -56,6 +56,41 @@
         </div>   
     </nav>
     <main class="flex-grow-1">
+        <!-- login form -->
+         <section id="login-reggister">
+            <div class="container">
+                <div class="row justify-content-center mt-5">
+                    <div class="col-md-6">
+                        <div class="card">
+        <!--form header-->
+                            <div class="card-header bg-warning">
+                                <h3 class="text-center">Login to your account</h3>
+                            </div>
+        <!--form body-->
+                            <div class="card-body py-3">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password">
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-warning" id="loginButton">Login</button>
+                                    </div>
+                                    <div class="my-3">
+                                        <p class="text-center">Don't have an account? <a href="register.html">Register here</a></p>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </section>
 
     </main>
 

@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" 
+    <link rel="stylesheet" 
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
       crossorigin="anonymous"
       referrerpolicy="no-referrer">
     <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/login.css">
     <title>Kirpputori</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -30,7 +31,7 @@
                         <a class="nav-link" href="sell-item.html">Sell-items</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="browse.html">Browse-item</a>
+                        <a class="nav-link" href="browse.html">Browse-items</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="login.html">My-account</a>
@@ -55,8 +56,56 @@
         </div>   
     </nav>
     <main class="flex-grow-1">
+        <!-- Register form -->
+         <section class="mb-4" id="registerSec">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 mt-5 ">
+                        <div class="card">
+                            <div class="card-header bg-warning">
+                                <h3 class="text-center">Register your self</h3>
+                            </div>
+                            <div class="card-body my-3">
+                                <form action="">
+                                    <div class="mb-4">
+                                        <label for="fullname" class="form-label">Fullname</label>
+                                        <input type="text" class="form-control" id="registerFullname" placeholder="Enter your fullname">
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="registerEmail" placeholder="Enter your email address">
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <label for="password" class="form-label" >Password</label>
+                                        <input type="password" class="form-control" id="registerPassword" placeholder="Enter your password">
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <label for="confirmPassword" class="form-label">Confirm Passwrod</label>
+                                        <input type="password" class="form-control" id="registerConfirmPassword" placeholder="Re-enter your password">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input class="form-check-input" type="checkbox" id="termsCheckbox">
+                                        <label class="form-check-label" for="termsCheckbox">I agree to the <a href="#">Terms and Conditions</a></label>
+                                    </div>
+                                    <div class="d-grid gap-2">
+
+                                        <button class="btn btn-warning" id="registerButton">Register</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+         </section>
+        
 
     </main>
+
     <footer class="bg-warning text-dark pt-3 pb-3">
         <div class="container">
             <div class="row">
@@ -76,12 +125,13 @@
                         <a href="https://www.linkedin.com/" class="text-success fs-4">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        
+        
                     </div>
                 </div>
             </div>
         </div>
     </footer>
+    
     <script src="../bootstrap/bootstrap.min.js"></script>
     <script src="../javaScript/global.js"></script>
 </body>
