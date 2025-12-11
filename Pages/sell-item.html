@@ -9,6 +9,7 @@
       referrerpolicy="no-referrer">
     <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/sell-item.css">
     <title>Kirpputori</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -30,7 +31,7 @@
                         <a class="nav-link" href="sell-item.html">Sell-items</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="browse.html">Browse-item</a>
+                        <a class="nav-link" href="browse.html">Browse-items</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="login.html">My-account</a>
@@ -54,8 +55,106 @@
             </div>
         </div>   
     </nav>
-    <main class="flex-grow-1">
+    <main class="flex-grow-1" id="main-window">
+        <!-- Create listing form -->
+        <section id="create-listing">
+            <div class="container">
+                <div class="row justify-content-center mt-3">
+                    <div class="col-md-10">
+                        <div class="card">
+                            <!--form header-->
+                            <div class="card-header bg-warning">
+                                <h3 class="text-center">Create a listing</h3>
+                            </div>
+                            <!--form body-->
+                            <div class="card-body py-3">
+                                <form class="container my-5 needs-validation" id="create-listing-form" novalidate>
 
+                                    <!-- Title field -->
+                                    <div class="mb-3">
+                                        <label class="form-label">Item Title</label>
+                                        <input type="text" class="form-control" placeholder="Enter item title" name="title" required>
+                                        <div class="invalid-feedback">Please enter a title.</div>
+                                    </div>
+
+                                    <!-- brief description(shows when previewing listing) -->
+                                    <div class="mb-3">
+                                        <label class="form-label">Brief Description</label>
+                                        <input type="text" class="form-control" maxlength="120" placeholder="Shows when previewing the listing, Max 120 characters" name="briefDescription" required>
+                                        <div class="invalid-feedback">Please enter a brief description.</div>
+                                    </div>
+
+                                    <!-- DESCRIPTION -->
+                                    <div class="mb-3">
+                                        <label class="form-label">Full Description</label>
+                                        <textarea class="form-control" rows="4" placeholder="Product description" name="description" required></textarea>
+                                        <div class="invalid-feedback">Please enter a description.</div>
+                                    </div>
+
+                                    <!-- IMAGE -->
+                                    <div class="mb-3">
+                                        <label class="form-label">Image</label>
+                                        <div class="d-flex gap-2">
+                                            <input type="file" class="form-control" accept="image/*" id="imageInput">
+                                            <button type="button" class="btn btn-secondary" id="defaultImageBtn">Use Default Image</button>
+                                        </div>
+                                        <input type="hidden" id="useDefaultImage" value="false" required>
+                                        <div class="invalid-feedback">Please upload an image or choose default.</div>
+                                    </div>
+
+                                    <!-- PRICE -->
+                                    <div class="mb-3">
+                                        <label class="form-label">Price (€)</label>
+                                        <input type="number" class="form-control" min="0" step="0.01" name="price" required>
+                                        <div class="invalid-feedback">Please enter a valid price.</div>
+                                    </div>
+
+                                    <!-- CATEGORY, list of categories -->
+                                    <div class="mb-3">
+                                        <label class="form-label">Category</label>
+                                        <select class="form-select" name="category" required>
+                                        <option value="" selected disabled>Select a category</option>
+                                        <option>Art</option>
+                                        <option>Vehicles and Parts</option>
+                                        <option>Electronics</option>
+                                        <option>Animals and Pets</option>
+                                        <option>Furniture</option>
+                                        <option>Garden and Building</option>
+                                        <option>Sports and Outdoors</option>
+                                        <option>Clothes</option>
+                                        <option>Hobbies</option>
+                                        </select>
+                                        <div class="invalid-feedback">Please select a category.</div>
+                                    </div>
+
+                                    <!-- LISTING TYPE -->
+                                    <div class="mb-3">
+                                        <label class="form-label">Listing Type</label>
+                                        <select class="form-select" name="type" required>
+                                        <option value="" selected disabled>Select listing type</option>
+                                        <option>Selling</option>
+                                        <option>Buying</option>
+                                        <option>Giving Away</option>
+                                        </select>
+                                        <div class="invalid-feedback">Please select a listing type.</div>
+                                    </div>
+
+
+                                    <!-- LOCATION (optional) -->
+                                    <div class="mb-3">
+                                        <label class="form-label">Location (optional)</label>
+                                        <input type="text" class="form-control" name="location" placeholder="City or area">
+                                    </div>
+
+                                    <!-- SUBMIT -->
+                                    <button class="btn btn-primary w-100" type="submit">Create Listing</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </section>
     </main>
     <footer class="bg-warning text-dark pt-3 pb-3">
         <div class="container">
@@ -83,6 +182,6 @@
         </div>
     </footer>
     <script src="../bootstrap/bootstrap.min.js"></script>
-    <script src="../javaScript/global.js"></script>
+    <script src="../javaScript/sellItem.js"></script>
 </body>
 </html>
