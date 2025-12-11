@@ -7,6 +7,8 @@ const PORT = 3001;
 app.use(express.json());
 app.use(cors());
 
+app.use(express.urlencoded({ extended: true }));
+
 // Load data
 let data = require("./data.json");
 
@@ -23,13 +25,34 @@ app.get("/listings/:id", (req, res) => {
 
 // Create listing
 app.post("/listings", (req, res) => {
+  const favorites = []
+  //get the date
+  const now = new Date();
+
+  const published = now.toLocaleString("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric"
+  });
+
+  //compile the data to one variable
   const newListing = {
-    id: Date.now().toString(),
+    id: req.body.id,
     title: req.body.title,
+    briefDescription: req.body.briefDescription,
+    description: req.body.description,
     price: req.body.price,
-    description: req.body.description
+    category: req.body.category,
+    type: req.body.type,
+    location: req.body.location,
+    date: published,
+    favorites: favorites,
+    image: req.body.image
   };
 
+  // Add to data
   data.listings.push(newListing);
 
   // Save to file
