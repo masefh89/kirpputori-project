@@ -1,0 +1,24 @@
+.password-wrapper {
+    position: relative;
+}
+
+/* Style input normally */
+.password-wrapper input {
+    width: 100%;
+    padding-right: 40px; /* space for the eye icon */
+}
+
+/* Eye icon inside input */
+.password-wrapper .toggle-password {
+    position: absolute;
+    top: 50%;             /* vertical center */
+    right: 10px;          /* distance from right edge */
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #555;
+}
+
+/* Optional hover effect */
+.password-wrapper .toggle-password:hover {
+    color: #000;
+}
