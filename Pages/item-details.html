@@ -12,48 +12,11 @@
     <title>Kirpputori</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <nav class="navbar navbar-expand-lg bg-warning">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../index.html">Kirpputori</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="listingHandling.html">Manage-items</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="sell-item.html">Sell-items</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="browse.html">Browse-item</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.html">My-account</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                    <button class="btn btn-outline-dark btn-info" type="submit">Search</button>
-                </form>
-                 <!-- Shopping Cart Icon with Badge -->
-                <div class="d-flex align-items-center">
-                    <a href="shopping-cart.html" class="text-decoration-none position-relative mx-3">
-                        <i class="fas fa-shopping-cart fa-lg text-white"></i>
-                        <!-- Badge showing item count -->
-                        <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-dark">0</span>
-                    </a>
-                </div>
-            </div>
-        </div>   
-    </nav>
+    <!-- we have navbar.html page that we use it with javascrpit instead of 
+     writing the navbar in every page, it is good for editing also-->
+    <div id="navbar-placeholder"></div>
+
+
     <main class="flex-grow-1">
 
     </main>
@@ -82,7 +45,8 @@
             </div>
         </div>
     </footer>
-    <script src="../bootstrap/bootstrap.min.js"></script>
+    <script src="../bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="../components/navbar.js"></script>
     <script src="../javaScript/global.js"></script>
 </body>
 </html>

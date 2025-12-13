@@ -12,54 +12,10 @@
     <title>kirpputori-project</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <!-- making navbar the navabr -->
-    <nav class="navbar navbar-expand-lg bg-warning">
-        <div class="container-fluid">
-            <!-- navbar brand -->
-            <a class="navbar-brand" href="index.html">Kirpputori</a>
-            <!-- making the navbar responsive to screan size, when screan gets smaller then navbar will collapse -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <!-- targeting the  links on the navbar when it collapse-->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- navbar links are starting from here-->
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/listingHandling.html">Manage-items</a>
-                    </li>
-                    <li class="nav-itme">
-                        <a class="nav-link" href="pages/sell-item.html">Sell-items</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/browse.html">Browse-items</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/login.html">My-account</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/about.html">About</a>
-                    </li>
-                </ul>
-                <!-- search box for user to ba able to do a quick search and a search button-->
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" id="navSearchInput" type="search" placeholder="Search" aria-label="Search"/>
-                    <button class="btn btn-outline-dark btn-info" type="submit">Search</button>
-                </form>
-                <!-- Shopping Cart Icon with Badge -->
-                <div class="d-flex align-items-center">
-                    <a href="pages/shopping-cart.html" class="text-decoration-none position-relative mx-3">
-                        <i class="fas fa-shopping-cart fa-lg text-white"></i>
-                        <!-- Badge showing item count -->
-                        <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-dark">0</span>
-                    </a>
-                </div>
-            </div>
-        </div>   
-    </nav>
+    <!-- we have navbar.html page that we use it with javascrpit instead of 
+     writing the navbar in every page, it is good for editing also-->
+    <div id="navbar-placeholder"></div>
+
     <main class="flex-grow-1">
     <!-- main banner the hero section with its backgroung image -->
         <section class="bgimage" id="home">
@@ -375,7 +331,8 @@
 
 
     
-    <script src="./bootstrap/bootstrap.min.js"></script>
+    <script src="./bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="./components/navbar.js"></script>
     <script src="./javaScript/global.js"></script>
 </body>
 </html>
