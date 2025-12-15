@@ -1,16 +1,24 @@
-const express = require("express");
-const cors = require("cors");
-const fs = require("fs");
-const app = express();
-const PORT = 3001;
+const express = require("express"); // Load the Express library to create a web server
 
-app.use(express.json());
-app.use(cors());
+const cors = require("cors"); // Load the CORS library to handle cross-origin requests
 
-app.use(express.urlencoded({ extended: true }));
+const fs = require("fs"); // Load the File System library to work with files
+const registerRoutes = require("./routes/register.routes"); // Load our custom routes from the register.routes.js file
+const loginRoutes = require("./routes/login.routes");
+
+
+const app = express(); // Create an Express application (our web server)
+const PORT = 3001;// Define the port number where our server will listen
+
+app.use(express.json()); // Tell Express to automatically parse JSON data in requests
+app.use(cors()); // Enable CORS to allow requests from different domains/origins
+app.use(express.urlencoded({ extended: true })); // Tell Express to parse form data in requests
+app.use("/api", loginRoutes);
+app.use("/api", registerRoutes);// Connect our custom routes to the "/api" path,All routes in registerRoutes will start with "/api"
+
 
 // Load data
-let data = require("./data.json");
+let data = require("./data/listings.json");
 
 // Get all listings
 app.get("/listings", (req, res) => {
@@ -56,7 +64,7 @@ app.post("/listings", (req, res) => {
   data.listings.push(newListing);
 
   // Save to file
-  fs.writeFileSync("./data.json", JSON.stringify(data, null, 2));
+  fs.writeFileSync("./data/listings.json", JSON.stringify(data, null, 2));
 
   res.json({ success: true, listing: newListing });
 });
@@ -64,7 +72,7 @@ app.post("/listings", (req, res) => {
 // Delete listing (optional)
 app.delete("/listings/:id", (req, res) => {
   data.listings = data.listings.filter(l => l.id !== req.params.id);
-  fs.writeFileSync("./data.json", JSON.stringify(data, null, 2));
+  fs.writeFileSync("./data/listings.json", JSON.stringify(data, null, 2));
   res.json({ success: true });
 });
 

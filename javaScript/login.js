@@ -21,12 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     
     // add submit event listener to the login form
-    loginForm.addEventListener("submit", (e) => {
+    loginForm.addEventListener("submit", async(e) => {
         e.preventDefault(); // prevent the default form submission behavior, it will prevent page reload
 
         // get the email and password input values
-        const email = document.getElementById("loginEmail").value;
-        const password = document.getElementById("loginPassword").value;
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value.trim();
 
         //check if the email and password is empty
         if (email === "" || password === "") {
@@ -34,8 +34,31 @@ document.addEventListener("DOMContentLoaded", () => {
             return; // exit the function if fields are empty
         }
 
-        // after successful loging in, we set the localStorage item "loggedInUser" to true
-        // we redirect to the homepage after login
-        window.location.href = "../index.html"; // redirect to homepage
+        fetch("http://localhost:3001/api/login", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        })
+        .then(function (response){
+            return response.json();
+
+        })
+        .then(function (data){
+            if (data.message !== "Login successful"){
+                showMessage(data.message);
+                return;
+            }
+            localStorage.setItem("loggedInUser", JSON.stringify(data.user));
+
+            window.location.href = "../index.html"; // redirect to homepage
+
+        })
+        .catch(function(){
+            showMessage("Server error");
+        })
+        
     });
 });

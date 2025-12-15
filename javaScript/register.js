@@ -50,12 +50,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
     });
 
     // Add submit event listener to the registration form
-    registerForm.addEventListener("submit", (e)=>{
+    registerForm.addEventListener("submit", async(e)=>{
         e.preventDefault(); // Prevent the default form submission behavior, stops page reload
 
         //get the input values from the form fields
-        const fullname = document.getElementById("registerFullname").value;
-        const email = document.getElementById("registerEmail").value;
+        const fullname = document.getElementById("registerFullname").value.trim();
+        const email = document.getElementById("registerEmail").value.trim();
         const password = document.getElementById("registerPassword").value;
         const confirmPassword = document.getElementById("registerConfirmPassword").value;
 
@@ -64,9 +64,45 @@ document.addEventListener("DOMContentLoaded", ()=>{
             showMessage("Please fill in all the fields.");
             return; // Exit the function if fields are empty
         }
+        if (password !== confirmPassword) {
+            // Check if password and confirm password don't match
+            showMessage("Passwords do not match.");
+            // Show error message and stop the registration process
+            return;
+        }
+        // Try to send registration data to the server
+        try{
+            // Send a POST request to the registration API endpoint
+            const response = await fetch("http://localhost:3001/api/register", {
+                method: "POST", // Use POST method to send data
+                headers:{
+                    "Content-Type": "application/json" // Tell server we're sending JSON
+                },
+                body: JSON.stringify({  // Convert data to JSON string
+                    fullname,
+                    email,
+                    password
+                })
+            });
+            // Convert server response from JSON to JavaScript object
+            const result = await response.json();
 
-        //redirect to the login page after successful registration
-        window.location.href = "../pages/login.html"; // Redirect to login page
+            
+            // Check if the server responded with an error
+            if (!response.ok){
+                showMessage(result.message || "Registration failed.")
+                return;
+            }
+
+            showMessage("Registration successful! Thanks for using our shop")
+
+            setTimeout(() => {
+                window.location.href = "../pages/login.html";
+            }, 1500);
+        } catch (error) { // Handle any network or unexpected errors
+            showMessage("Something went wrong, please try again later.")
+        }
+
     });
 
 });
