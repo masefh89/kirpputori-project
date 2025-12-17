@@ -44,7 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (response.ok && data.message === "Login successful") {
                 // Save user info to localStorage
-                localStorage.setItem("loggedInUser", JSON.stringify(data.user));
+                //localStorage.setItem("loggedInUser", JSON.stringify(data.user));
+                const user = {
+                    id: data.user.id,           // user id
+                    name: data.user.fullname,   // <-- key changed from fullname to name
+                    email: data.user.email      // keep email
+                };
 
                 // Redirect to homepage
                 window.location.href = "../index.html";

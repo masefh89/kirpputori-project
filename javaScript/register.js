@@ -93,6 +93,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 showMessage(result.message || "Registration failed.")
                 return;
             }
+            const newUser = {
+                id: result.user.id,
+                name: result.user.fullname,  // <-- 
+                email: result.user.email
+            };
+            localStorage.setItem("loggedInUser", JSON.stringify(newUser));
 
             showMessage("Registration successful! Thanks for using our shop")
 
