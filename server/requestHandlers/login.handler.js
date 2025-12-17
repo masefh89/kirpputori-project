@@ -10,11 +10,11 @@ const fs = require("fs"); // "fs" is built in Node.js modules that lets the code
 const path = require("path");// "path" helps to build file pahts correctly
 //---------------------------------------------------------------------------
 // path to users.json
-const usersFilePath = path.join(__dirname, "../data/users.json");
+const usersFilePath = path.join(__dirname, "../data/data.json");
 //__dirname: it is an special variable that means "current folder location"
 //".." : go to parrent folder 
 // "data" : go to data folder
-// and finaly the targeted file "users.json"
+// and finaly the targeted file "data.json"
 //-------------------------------------------------------------------
 
 
@@ -43,7 +43,8 @@ const loginUser = (req, res) => {
         });
     }
 
-    const users = JSON.parse(data);//json.parse converts json text into real javascript data
+    const allData = JSON.parse(data);//json.parse converts json text into real javascript data
+    const users = allData.users;
     
     // 1. Reads the JSON string
     // 2. Checks if it's valid JSON

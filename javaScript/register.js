@@ -93,9 +93,14 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 showMessage(result.message || "Registration failed.")
                 return;
             }
+            if (!result.user) {
+                showMessage("Registration failed: no user data returned.");
+                return;
+            }
+
             const newUser = {
                 id: result.user.id,
-                name: result.user.fullname,  // <-- 
+                name: result.user.fullname,  
                 email: result.user.email
             };
             localStorage.setItem("loggedInUser", JSON.stringify(newUser));
