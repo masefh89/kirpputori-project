@@ -50,6 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     name: data.user.fullname,   // <-- key changed from fullname to name
                     email: data.user.email      // keep email
                 };
+                localStorage.setItem("loggedInUser", JSON.stringify(user));
+
 
                 // Redirect to homepage
                 window.location.href = "../index.html";
