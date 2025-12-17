@@ -30,10 +30,10 @@ function setupAccountMenu(){
     
 
     //check if user is logged in by looking for "loggedInUser" in localStorage
-    const loggedInUser = localStorage.getItem("loggedInUser") === "true";
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
     // get the username from localStorage if available
-    const username = localStorage.getItem("username");
+    const username = loggedInUser?.name;
 
     if (!loggedInUser) {
         // if the user is not logged in, show "Login" and "Register" options
@@ -47,9 +47,8 @@ function setupAccountMenu(){
         // If the user IS logged in, show Profile, Manage Items, Sell Items, and Logout options
         
         accountDropdownMenu.innerHTML = `
-        <li><a class="dropdown-item" href="/pages/profile.html">Profile</a></li>
-        <li><a class="dropdown-item" href="/pages/manageItems.html">Manage Items</a></li>
-        <li><a class="dropdown-item" href="/pages/sellItem.html">Sell Item</a></li>
+        <li><a class="dropdown-item" href="/Pages/listingHandling.html">Manage Items</a></li>
+        <li><a class="dropdown-item" href="/Pages/sellItem.html">Sell Item</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="#" id="logoutBtn">Logout</a></li>            
         
@@ -61,7 +60,6 @@ function setupAccountMenu(){
         logoutBtn.addEventListener("click", (e) => {
             e.preventDefault();// prevent default link behavior
             localStorage.removeItem("loggedInUser"); // remove loggedInUser from localStorage   
-            localStorage.removeItem("username"); // remove username from localStorage
             // we can redirect to the homepage after logout
             window.location.href = "/index.html"; // redirect to homepage
         });

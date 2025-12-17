@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         })
         .then(function (response){
+            
             return response.json();
 
         })
@@ -51,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 showMessage(data.message);
                 return;
             }
+            //set the logged in user(email and id)
             localStorage.setItem("loggedInUser", JSON.stringify(data.user));
 
             window.location.href = "../index.html"; // redirect to homepage
