@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Check if fields are empty
         if (email === "" || password === "") {
-            showMessage("Please fill in both email and password fields.");
+            alert("Please fill in both email and password fields.");
             return;
         }
 
@@ -57,11 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.location.href = "../index.html";
             } else {
                 // Show error message from server
-                showMessage(data.message);
+                alert(data.message);
             }
         } catch (error) {
             console.error("Login error:", error);
-            showMessage("Server error. Please try again later.");
+            alert("Server error. Please try again later.");
         }
     });
 });
