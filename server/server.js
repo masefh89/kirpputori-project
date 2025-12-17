@@ -17,17 +17,19 @@ app.use("/api", loginRoutes);
 app.use("/api", registerRoutes);// Connect our custom routes to the "/api" path,All routes in registerRoutes will start with "/api"
 
 
+
+//all functionality for listing side
 // Load data
-let data = require("./data/listings.json");
+let listingData = require("./data/listings.json");
 
 // Get all listings
 app.get("/listings", (req, res) => {
-  res.json(data.listings);
+  res.json(listingData.listings);
 });
 
 // Get one listing
 app.get("/listings/:id", (req, res) => {
-  const listing = data.listings.find(l => l.id === req.params.id);
+  const listing = listingData.listings.find(l => l.id === req.params.id);
   listing ? res.json(listing) : res.status(404).send("Not found");
 });
 
@@ -61,19 +63,21 @@ app.post("/listings", (req, res) => {
   };
 
   // Add to data
-  data.listings.push(newListing);
+  listingData.listings.push(newListing);
 
   // Save to file
-  fs.writeFileSync("./data/listings.json", JSON.stringify(data, null, 2));
+  fs.writeFileSync("./data/listings.json", JSON.stringify(listingData, null, 2));
 
   res.json({ success: true, listing: newListing });
 });
 
-// Delete listing (optional)
+// Delete listing by id
 app.delete("/listings/:id", (req, res) => {
-  data.listings = data.listings.filter(l => l.id !== req.params.id);
-  fs.writeFileSync("./data/listings.json", JSON.stringify(data, null, 2));
+  listingData.listings = listingData.listings.filter(l => l.id !== req.params.id);
+  fs.writeFileSync("./data/listings.json", JSON.stringify(listingData, null, 2));
   res.json({ success: true });
 });
+
+//all functionality for user side
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

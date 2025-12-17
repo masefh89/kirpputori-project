@@ -74,8 +74,9 @@ const loginUser = (req, res) => {
         message: "Login successful",
         user: {
         email: user.email,
-        name: user.name
+        id: user.id
       }
+      
     });
   });
 };

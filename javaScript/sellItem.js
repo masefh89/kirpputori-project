@@ -1,5 +1,8 @@
+
+
 const defaultBtn = document.getElementById('defaultImageBtn');
 
+//behavior for default image button
 if (defaultBtn) {
   defaultBtn.addEventListener('click', () => {
     // Set hidden input value to true
@@ -15,9 +18,9 @@ if (defaultBtn) {
     alert("Default image selected"); // optional feedback
   });
 }
+
 function checkForm() {
   'use strict';
-
   const forms = document.querySelectorAll('.needs-validation');
 
   Array.from(forms).forEach(form => {
@@ -51,7 +54,7 @@ function checkForm() {
     }
 
       const id = crypto.randomUUID();
-      // --- COLLECT FORM DATA ---
+      //  COLLECT FORM DATA
       const formData = {
         id: id,
         title: form.querySelector("[name='title']").value,
@@ -65,7 +68,7 @@ function checkForm() {
       };
       
       try {
-        // --- SEND TO SERVER ---
+        //  SEND TO SERVER 
         const response = await fetch("http://localhost:3001/listings", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
