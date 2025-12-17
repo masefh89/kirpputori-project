@@ -52,6 +52,21 @@
       "date": "18/12/2025, 01:43",
       "favorites": [],
       "image": "default.png"
+    },
+    {
+      "id": "c51baa44-135e-4541-993a-978097415cd8",
+      "title": "Test12",
+      "briefDescription": "just a test",
+      "description": "1",
+      "price": "100",
+      "category": "Art",
+      "type": "Selling",
+      "location": "Mikkeli",
+      "date": "18/12/2025, 01:52",
+      "favorites": [],
+      "image": "default.png",
+      "sellerName": "Topias",
+      "sellerId": "1766014892068"
     }
   ],
   "users": [
