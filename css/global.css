@@ -80,8 +80,45 @@ map styling */
 }
 
 
-/* home page, selling section cards styling */
+
+
+/* Make cards the same height and add a subtle shadow */
+.card {
+    height: 100%;                  /* Ensure all cards in a row align */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* Soft shadow for depth */
+    transition: transform 0.2s;     /* Smooth hover effect */
+}
+
+/* Hover effect for cards */
+.card:hover {
+    transform: translateY(-5px);   /* Lift card slightly on hover */
+}
+
+/* Image styling */
 .card-img-top {
-    height: 400px; 
-    object-fit: cover;
+    height: 200px;                 /* Fixed height for consistency */
+    object-fit: cover;             /* Crop image to fit nicely */
+    background-color: #f8f9fa;    /* Light background if image is smaller */
+}
+
+/* Card body layout */
+.card-body {
+    display: flex;
+    flex-direction: column;        /* Stack title, text, buttons vertically */
+    justify-content: space-between; /* Push buttons to bottom */
+}
+
+/* Buttons spacing */
+.card-body .btn {
+    margin-top: 0.5rem;            /* Small gap between buttons */
+}
+
+/* Seller and price styling */
+.card-subtitle {
+    font-size: 0.9rem;             /* Slightly smaller for subtitle */
+    color: #6c757d;                /* Bootstrap muted color */
+}
+
+.card-text {
+    font-size: 0.95rem;            /* Comfortable text size */
 }
