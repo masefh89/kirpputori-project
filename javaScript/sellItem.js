@@ -21,6 +21,12 @@ if (defaultBtn) {
 
 function checkForm() {
   'use strict';
+  //get user to check if logged in
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (!user) {
+    alert("Please log in to sell an item");
+    return;
+  }
   const forms = document.querySelectorAll('.needs-validation');
 
   Array.from(forms).forEach(form => {
@@ -54,6 +60,9 @@ function checkForm() {
     }
 
       const id = crypto.randomUUID();
+      const seller = JSON.parse(localStorage.getItem("loggedInUser"));
+      const sellerId = seller?.id;
+      const sellerName = seller?.name;
       //  COLLECT FORM DATA
       const formData = {
         id: id,
@@ -64,7 +73,9 @@ function checkForm() {
         category: form.querySelector("[name='category']").value,
         type: form.querySelector("[name='type']").value,
         location: form.querySelector("[name='location']").value,
-        image: imageData
+        image: imageData,
+        sellerName: sellerName,
+        sellerId: sellerId
       };
       
       try {

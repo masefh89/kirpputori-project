@@ -73,6 +73,7 @@ const loginUser = (req, res) => {
     res.status(200).json({
         message: "Login successful",
         user: {
+        name: user.fullname,
         email: user.email,
         id: user.id
       }

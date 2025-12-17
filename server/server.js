@@ -1,44 +1,56 @@
-const express = require("express"); // Load the Express library to create a web server
+const express = require("express");
+const cors = require("cors");
+const fs = require("fs");
 
-const cors = require("cors"); // Load the CORS library to handle cross-origin requests
-
-const fs = require("fs"); // Load the File System library to work with files
-const registerRoutes = require("./routes/register.routes"); // Load our custom routes from the register.routes.js file
+const registerRoutes = require("./routes/register.routes");
 const loginRoutes = require("./routes/login.routes");
 
+const app = express();
+const PORT = 3001;
 
-const app = express(); // Create an Express application (our web server)
-const PORT = 3001;// Define the port number where our server will listen
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use(express.json()); // Tell Express to automatically parse JSON data in requests
-app.use(cors()); // Enable CORS to allow requests from different domains/origins
-app.use(express.urlencoded({ extended: true })); // Tell Express to parse form data in requests
-app.use("/api", loginRoutes);
-app.use("/api", registerRoutes);// Connect our custom routes to the "/api" path,All routes in registerRoutes will start with "/api"
+app.use(cors());
 
+app.options("/listings/:id", cors());
 
+const DATA_PATH = "./data/listings.json";
 
-//all functionality for listing side
-// Load data
-let listingData = require("./data/listings.json");
+//next is needed for editing the listings to work
+//loads listings
+function loadListings() {
+  return JSON.parse(fs.readFileSync(DATA_PATH, "utf-8"));
+}
+//saves listings
+function saveListings(data) {
+  fs.writeFileSync(DATA_PATH, JSON.stringify(data, null, 2));
+}
+
 
 // Get all listings
 app.get("/listings", (req, res) => {
-  res.json(listingData.listings);
+  const data = loadListings();
+  res.json(data.listings);
 });
 
-// Get one listing
+// Get one listing by ID
 app.get("/listings/:id", (req, res) => {
-  const listing = listingData.listings.find(l => l.id === req.params.id);
-  listing ? res.json(listing) : res.status(404).send("Not found");
+  const data = loadListings();
+  const listing = data.listings.find(l => l.id === req.params.id);
+
+  if (!listing) {
+    return res.status(404).json({ success: false, message: "Not found" });
+  }
+
+  res.json(listing);
 });
 
 // Create listing
 app.post("/listings", (req, res) => {
-  const favorites = []
-  //get the date
-  const now = new Date();
+  const data = loadListings();
 
+  const now = new Date();
   const published = now.toLocaleString("en-GB", {
     hour: "2-digit",
     minute: "2-digit",
@@ -47,7 +59,7 @@ app.post("/listings", (req, res) => {
     year: "numeric"
   });
 
-  //compile the data to one variable
+  
   const newListing = {
     id: req.body.id,
     title: req.body.title,
@@ -58,26 +70,68 @@ app.post("/listings", (req, res) => {
     type: req.body.type,
     location: req.body.location,
     date: published,
-    favorites: favorites,
-    image: req.body.image
+    favorites: [],
+    image: req.body.image,
+    sellerName: req.body.sellerName,
+    sellerId: req.body.sellerId
   };
 
-  // Add to data
-  listingData.listings.push(newListing);
-
-  // Save to file
-  fs.writeFileSync("./data/listings.json", JSON.stringify(listingData, null, 2));
+  data.listings.push(newListing);
+  saveListings(data);
 
   res.json({ success: true, listing: newListing });
 });
 
-// Delete listing by id
+// Update listing
+app.put("/listings/:id", (req, res) => {
+  console.log("PUT called with ID:", req.params.id);
+
+  const data = loadListings();
+  const listing = data.listings.find(l => l.id === req.params.id);
+
+  //checks if listing exists
+  if (!listing) {
+    console.log("Listing not found!");
+    return res.status(404).json({ success: false, message: "Listing not found" });
+  }
+
+  const editableFields = [
+    "title",
+    "briefDescription",
+    "description",
+    "price",
+    "category",
+    "type",
+    "location"
+  ];
+
+  editableFields.forEach(field => {
+    if (req.body[field] !== undefined) {
+      listing[field] = req.body[field];
+    }
+  });
+
+  saveListings(data);
+
+  res.json({ success: true, listing });
+});
+
+// Delete listing
 app.delete("/listings/:id", (req, res) => {
-  listingData.listings = listingData.listings.filter(l => l.id !== req.params.id);
-  fs.writeFileSync("./data/listings.json", JSON.stringify(listingData, null, 2));
+  const data = loadListings();
+  data.listings = data.listings.filter(l => l.id !== req.params.id);
+  saveListings(data);
+
   res.json({ success: true });
 });
 
-//all functionality for user side
+//user routes
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.use("/api", loginRoutes);
+app.use("/api", registerRoutes);
+
+//server start
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
