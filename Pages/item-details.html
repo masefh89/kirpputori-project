@@ -18,7 +18,75 @@
 
 
     <main class="flex-grow-1">
+        <section id="create-listing">
+            <div class="container">
+                <div class="row justify-content-center mt-3">
+                    <div class="col-md-10">
+                        <div class="card">
+                            <!--card header-->
+                            <div class="card-header bg-warning">
+                                <h3 class="text-center fw-bold" id="title">Placeholder</h3>
+                            </div>
+                            <!--card body-->
+                            <div class="card-body py-3">
+                                <div class="row">
+                                    <!-- Image column -->
+                                    <div class="col-md-5 mb-3">
+                                        <img
+                                            id="image"
+                                            alt="Listing image"
+                                            class="img-fluid rounded shadow-sm w-100"
+                                            style="object-fit: cover; max-height: 320px;"
+                                        />
+                                    </div>
 
+                                    <!-- Details column -->
+                                    <div class="col-md-7">
+                                        <!-- Price -->
+                                        <h4 class="text-success fw-bold mb-2">
+                                            $<span id="price"></span>
+                                        </h4>
+
+                                        <!-- Brief description -->
+                                        <p class="text-muted mb-3" id="briefDescription"></p>
+
+                                        <!-- Metadata -->
+                                        <div class="mb-3">
+                                            <span class="badge bg-primary me-1" id="category"></span>
+                                            <span class="badge bg-secondary me-1" id="type"></span>
+                                        </div>
+
+                                        <!-- Seller info -->
+                                        <ul class="list-unstyled small mb-3">
+                                            <li>
+                                                <strong>Seller:</strong>
+                                                <span id="sellerName"></span>
+                                            </li>
+                                            <li>
+                                                <strong>Location:</strong>
+                                                <span id="location" class="text-muted">Not specified</span>
+                                            </li>
+                                            <li>
+                                                <strong>Posted:</strong>
+                                                <span id="date"></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <!-- Full description -->
+                                <div>
+                                    <h5 class="fw-semibold mb-2">Description</h5>
+                                    <p id="description" class="text-secondary"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </section>
     </main>
     <footer class="bg-warning text-dark pt-3 pb-3">
         <div class="container">
