@@ -30,6 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // After cards are created, add favorite button functionality
             setupFavoriteButtons();
+            // After cards are created, add Add-to-Cart button functionality
+            setupAddToCartButtons();
 
         } catch (error) {
             // Handle errors
@@ -72,6 +74,9 @@ document.addEventListener("DOMContentLoaded", () => {
                   <a href="./pages/item-details.html?id=${item.id}" class="btn btn-primary w-100 mt-2">
                     <i class="fa-solid fa-eye"></i> View Details
                   </a>
+                  <!-- Buy/Add to Cart button -->
+                  <button class="btn btn-success w-100 add-to-cart-btn" data-id="${item.id}">
+                  <i class="fa-solid fa-cart-plus"></i> Buy
                 </div>
               </div>
             </div>
@@ -91,6 +96,41 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
+
+    // -----------------------------
+    // Function to handle Add to Cart button click
+    // -----------------------------
+    function setupAddToCartButtons() {
+        // Select all Buy buttons
+        const cartButtons = document.querySelectorAll(".add-to-cart-btn");
+
+        // Select the cart count badge in the navbar
+        const cartCountEl = document.getElementById("cartCount");
+
+        // Initialize cart count from localStorage (0 if not set)
+        let cartCount = parseInt(localStorage.getItem("cartCount")) || 0;
+        if (cartCountEl) cartCountEl.textContent = cartCount;
+
+        // Add click event to each Buy button
+        cartButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const id = btn.getAttribute("data-id"); // item id (optional for now)
+
+                // Step 1: Increase count
+                cartCount++;
+
+                // Step 2: Save updated count in localStorage
+                localStorage.setItem("cartCount", cartCount);
+
+                // Step 3: Update badge in navbar
+                if (cartCountEl) cartCountEl.textContent = cartCount;
+
+                // Optional: show alert
+                alert(`Item added to shopping cart!`);
+            });
+        });
+    }
+
 
     // Call the function to load items when page loads
     loadRecentlyAdded();

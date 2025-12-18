@@ -77,14 +77,18 @@ document.addEventListener("DOMContentLoaded", () => {
                   </button>
                 </div>
                 <div class="card-body d-flex flex-column justify-content-between">
-                  <h5 class="card-title">${item.title}</h5>
-                  <p class="card-subtitle mb-2 text-muted">Seller: ${item.seller || "Unknown"}</p>
-                  <p class="card-text text-muted">Category: ${item.category || "N/A"}</p>
-                  <p class="card-text fw-bold mb-2">€${parseFloat(item.price).toFixed(2)}</p>
-                  <p class="card-text mb-2">${item.briefDescription || "No description"}</p>
-                  <a href="./item-details.html?id=${item.id}" class="btn btn-primary w-100 mt-2">
+                    <h5 class="card-title">${item.title}</h5>
+                    <p class="card-subtitle mb-2 text-muted">Seller: ${item.seller || "Unknown"}</p>
+                    <p class="card-text text-muted">Category: ${item.category || "N/A"}</p>
+                    <p class="card-text fw-bold mb-2">€${parseFloat(item.price).toFixed(2)}</p>
+                    <p class="card-text mb-2">${item.briefDescription || "No description"}</p>
+                    <a href="./item-details.html?id=${item.id}" class="btn btn-primary w-100 mt-2">
                     <i class="fa-solid fa-eye"></i> View Details
-                  </a>
+                    </a>
+                    <!-- Buy/Add to Cart button -->
+                    <button class="btn btn-success w-100 mt-2 add-to-cart-btn" data-id="${item.id}">
+                    <i class="fa-solid fa-cart-plus"></i> Buy
+                    </button>
                 </div>
             `;
             // Add the card to the column
@@ -95,6 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         // Set up click handlers for favorite buttons
         setupFavoriteButtons();
+
+        setupAddToCartButtons(); // <-- sets up the Buy button click events
     }
 
     //Apply search and filters
@@ -137,6 +143,33 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
+
+    function setupAddToCartButtons() {
+        const cartButtons = document.querySelectorAll(".add-to-cart-btn");
+        const cartCountEl = document.getElementById("cartCount");
+
+        // Initialize cart count from localStorage
+        let cartCount = parseInt(localStorage.getItem("cartCount")) || 0;
+        if (cartCountEl) cartCountEl.textContent = cartCount;
+
+        cartButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const id = btn.getAttribute("data-id"); // item id, optional for now
+
+                // Increase count
+                cartCount++;
+                localStorage.setItem("cartCount", cartCount);
+
+                // Update badge
+                if (cartCountEl) cartCountEl.textContent = cartCount;
+
+                alert(`Item added to shopping cart.`);
+            });
+        });
+    }
+
+
+
 
     // Event listeners for search and filter controls
 
