@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   <p class="card-text text-muted">Category: ${item.category || "N/A"}</p>
                   <p class="card-text fw-bold mb-2">€${parseFloat(item.price).toFixed(2)}</p>
                   <p class="card-text mb-2">${item.briefDescription || "No description"}</p>
-                  <a href="./pages/item-details.html?id=${item.id}" class="btn btn-primary w-100 mt-2">
+                  <a href="./item-details.html?id=${item.id}" class="btn btn-primary w-100 mt-2">
                     <i class="fa-solid fa-eye"></i> View Details
                   </a>
                 </div>
