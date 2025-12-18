@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="card shadow-sm items-card">
                 <div class="position-relative">
                   <!-- Item image -->
-                  <img src="${item.image}" class="card-img-top" alt="${item.title}">
+                  <img src="/images/${item.image}" class="card-img-top" alt="${item.title}">
                   <!-- Favorite button -->
                   <button class="btn btn-light btn-sm position-absolute top-0 end-0 m-2 p-2 rounded-circle shadow-sm favorite-btn" 
                           data-id="${item.id}" 

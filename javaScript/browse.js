@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Set the HTML content of the card using template literal
             card.innerHTML = `
                 <div class="position-relative">
-                  <img src="${item.image}" class="card-img-top" alt="${item.title}">
+                  <img src="/images/${item.image}" class="card-img-top" alt="${item.title}">
                   <button class="btn btn-light btn-sm position-absolute top-0 end-0 m-2 p-2 rounded-circle shadow-sm favorite-btn" 
                           data-id="${item.id}" title="Add to favorites">
                     <i class="fa-regular fa-heart"></i>
