@@ -12,6 +12,11 @@ document.addEventListener("DOMContentLoaded", ()=>{
         const navbarDiv = document.getElementById("navbar-placeholder");
         // we set the innerHTML of the navbarDiv to the data we fetched
         navbarDiv.innerHTML = data;
+
+        const cartCountEl = document.getElementById("cartCount");
+        const cartCount = parseInt(localStorage.getItem("cartCount")) || 0;
+        if (cartCountEl) cartCountEl.textContent = cartCount;
+
         // after inserting the navbar, we can now manipulate it if needed
         // we are gonna add a dropdown menu for "My-account"
         setupAccountMenu();
