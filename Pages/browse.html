@@ -9,22 +9,73 @@
       referrerpolicy="no-referrer">
     <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../css/global.css">
-    <title>Kirpputori</title>
+    <title>Browse Items - Kirpputori</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <!-- we have navbar.html page that we use it with javascrpit instead of 
-     writing the navbar in every page, it is good for editing also-->
+
+    <!-- Navbar loaded via JS -->
     <div id="navbar-placeholder"></div>
 
+    <main class="flex-grow-1 py-4">
+        <div class="container">
+            <!-- Search Box -->
+            <div class="col-md-6 d-flex mb-2">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search items...">
+                <button class="btn btn-warning ms-2" id="searchBtn">Search</button>
+            </div>
 
-    <main class="flex-grow-1">
+            <!-- Filters Row -->
+            <div class="row mb-4" id="filtersRow">
+                <!-- Category Filter -->
+                <div class="col-md-3 mb-2">
+                    <select class="form-select" id="categoryFilter">
+                        <option value="all" selected>All Categories</option>
+                        <option>Art</option>
+                        <option>Vehicles and Parts</option>
+                        <option>Electronics</option>
+                        <option>Animals and Pets</option>
+                        <option>Furniture</option>
+                        <option>Garden and Building</option>
+                        <option>Sports and Outdoors</option>
+                        <option>Clothes</option>
+                        <option>Hobbies</option>
+                    </select>
+                </div>
 
+                <!-- Price Filter -->
+                <div class="col-md-3 mb-2">
+                    <select class="form-select" id="priceFilter">
+                        <option value="all" selected>All Prices</option>
+                        <option value="low-high">Low → High</option>
+                        <option value="high-low">High → Low</option>
+                    </select>
+                </div>
+
+                <!-- View Type Menu -->
+                <div class="col-md-2 mb-2">
+                    <select class="form-select" id="viewType">
+                        <option value="grid" selected>Grid View</option>
+                        <option value="list">List View</option>
+                    </select>
+                </div>
+
+                <!-- Apply Filters Button -->
+                <div class="col-md-2 mb-2">
+                    <button class="btn btn-warning w-100" id="applyFiltersBtn">Apply Filters</button>
+                </div>
+            </div>
+
+            <!-- ----------------- ITEM CARDS CONTAINER ----------------- -->
+            <div id="itemsContainer" class="row g-3">
+                <!-- Item cards will be appended here dynamically by browse.js -->
+            </div>
+        </div>
     </main>
+
     <footer class="bg-warning text-dark pt-3 pb-3">
         <div class="container">
             <div class="row">
-            <!-- Social Media Icons -->
-                <div class="col-md-6 mx-auto  text-center">
+                <div class="col-md-6 mx-auto text-center">
                     <h5 class="mb-3 d-flex justify-content-center">Follow Us</h5>
                     <div class="d-flex gap-3 justify-content-center">
                         <a href="https://www.facebook.com/" class="text-primary fs-4 text-hover-warning">
@@ -39,14 +90,16 @@
                         <a href="https://www.linkedin.com/" class="text-success fs-4">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        
                     </div>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- JS scripts -->
     <script src="../bootstrap/bootstrap.bundle.min.js"></script>
     <script src="../components/navbar.js"></script>
     <script src="../javaScript/global.js"></script>
+    <script src="../javaScript/browse.js"></script> 
 </body>
 </html>

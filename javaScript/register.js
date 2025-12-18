@@ -61,12 +61,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
         //check if any of the fields are empty
         if(fullname === "" || email === "" || password === "" || confirmPassword === ""){
-            showMessage("Please fill in all the fields.");
+            alert("Please fill in all the fields.");
             return; // Exit the function if fields are empty
         }
         if (password !== confirmPassword) {
             // Check if password and confirm password don't match
-            showMessage("Passwords do not match.");
+            alert("Passwords do not match.");
             // Show error message and stop the registration process
             return;
         }
@@ -90,17 +90,25 @@ document.addEventListener("DOMContentLoaded", ()=>{
             
             // Check if the server responded with an error
             if (!response.ok){
-                showMessage(result.message || "Registration failed.")
+                alert(result.message || "Registration failed.")
+                return;
+            }
+            if (!result.user) {
+                alert("Registration failed: no user data returned.");
                 return;
             }
 
-            showMessage("Registration successful! Thanks for using our shop")
+            const newUser = {
+                id: result.user.id,
+                name: result.user.fullname,  
+                email: result.user.email
+            };
+            localStorage.setItem("loggedInUser", JSON.stringify(newUser));
+            window.location.href = "../index.html";
 
-            setTimeout(() => {
-                window.location.href = "../pages/login.html";
-            }, 1500);
+            
         } catch (error) { // Handle any network or unexpected errors
-            showMessage("Something went wrong, please try again later.")
+            alert("Something went wrong, please try again later.")
         }
 
     });

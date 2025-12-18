@@ -1,64 +1,67 @@
-// this file handels the login functionality
-// wait until the entire html document is loaded and parsed
+// login.js
+// This file handles the login functionality
+
 document.addEventListener("DOMContentLoaded", () => {
 
+    // -------------------------------
     // Show/Hide password functionality
+    // -------------------------------
     const passwordInput = document.getElementById("loginPassword");
     const togglePassword = document.getElementById("togglePassword");
 
     if (passwordInput && togglePassword) {
         togglePassword.addEventListener("click", () => {
-            const type = passwordInput.type === "password" ? "text" : "password";
-            passwordInput.type = type;
+            passwordInput.type = passwordInput.type === "password" ? "text" : "password";
             togglePassword.classList.toggle("fa-eye-slash");
         });
     }
 
-
-
-    //get the login form element by its id
+    // -------------------------------
+    // Login form submission
+    // -------------------------------
     const loginForm = document.getElementById("loginForm");
 
-    
-    // add submit event listener to the login form
-    loginForm.addEventListener("submit", async(e) => {
-        e.preventDefault(); // prevent the default form submission behavior, it will prevent page reload
+    loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault(); // prevent page reload
 
-        // get the email and password input values
         const email = document.getElementById("loginEmail").value.trim();
         const password = document.getElementById("loginPassword").value.trim();
 
-        //check if the email and password is empty
+        // Check if fields are empty
         if (email === "" || password === "") {
-            showMessage("Please fill in both email and password fields.");
-            return; // exit the function if fields are empty
+            alert("Please fill in both email and password fields.");
+            return;
         }
 
-        fetch("http://localhost:3001/api/login", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                email: email,
-                password: password
-            })
-        })
-        .then(function (response){
-            return response.json();
+        try {
+            const response = await fetch("http://localhost:3001/api/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password })
+            });
 
-        })
-        .then(function (data){
-            if (data.message !== "Login successful"){
-                showMessage(data.message);
-                return;
+            const data = await response.json();
+
+            if (response.ok && data.message === "Login successful") {
+                // Save user info to localStorage
+                //localStorage.setItem("loggedInUser", JSON.stringify(data.user));
+                const user = {
+                    id: data.user.id,           // user id
+                    name: data.user.fullname,   // <-- key changed from fullname to name
+                    email: data.user.email      // keep email
+                };
+                localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+
+                // Redirect to homepage
+                window.location.href = "../index.html";
+            } else {
+                // Show error message from server
+                alert(data.message);
             }
-            localStorage.setItem("loggedInUser", JSON.stringify(data.user));
-
-            window.location.href = "../index.html"; // redirect to homepage
-
-        })
-        .catch(function(){
-            showMessage("Server error");
-        })
-        
+        } catch (error) {
+            console.error("Login error:", error);
+            alert("Server error. Please try again later.");
+        }
     });
 });
