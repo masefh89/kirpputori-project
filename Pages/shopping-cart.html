@@ -16,6 +16,46 @@
      writing the navbar in every page, it is good for editing also-->
     <div id="navbar-placeholder"></div>
     <main class="flex-grow-1">
+        <h1 class="text-center mb-4">Shopping Cart</h1>
+
+ <!-- Cart table -->
+        <div class="container table-responsive">
+            <table class="table table-bordered align-middle text-center">
+                <thead class="table-warning">
+                    <tr>
+                        <th>Item</th>
+                        <th>Seller</th>
+                        <th>Price (€)</th>
+                        <th>Quantity</th>
+                        <th>Total (€)</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example cart item -->
+                    <tr>
+                        <td>Example Item</td>
+                        <td>mohammed</td>
+                        <td>15.00</td>
+                        <td>1</td>
+                        <td>15.00</td>
+                        <td>
+                            <button class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <!-- Add more items here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Cart summary -->
+        <div class="container d-flex justify-content-end align-items-center mt-4">
+            <h4 class="me-3">Total: €15.00</h4>
+            <button class="btn btn-success">Proceed to Checkout</button>
+        </div>
+
 
     </main>
     <footer class="bg-warning text-dark pt-3 pb-3">
